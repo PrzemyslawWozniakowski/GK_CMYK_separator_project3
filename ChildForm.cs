@@ -194,7 +194,25 @@ namespace Grafika_projekt_3
             FillCanvas(blackMap, canvasK);
         }
 
+        public void saveFile()
+        {
+            Bitmap bp = new Bitmap(2 * Width, 2 * Height);
+            var g = System.Drawing.Graphics.FromImage(bp);
+            g.DrawImage(canvasC.Image, new Rectangle(0, 0, Width, Height));
+            g.DrawImage(canvasM.Image, new Rectangle(Width, 0, Width, Height));
+            g.DrawImage(canvasY.Image, new Rectangle(0, Height, Width, Height));
+            g.DrawImage(canvasK.Image, new Rectangle(Width, Height, Width, Height));
 
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + @"GeneratedImage";
+            dialog.AutoUpgradeEnabled = true;
+            dialog.Title = "Save an image.";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                bp.Save(dialog.FileName, ImageFormat.Jpeg);
+
+            }
+        }
 
 
         private void InitializeComponent(int _width, int _height)

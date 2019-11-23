@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Grafika_projekt_3
 {
@@ -210,10 +211,10 @@ namespace Grafika_projekt_3
                 if (moving.X > 550- offset) moving.X = 550- offset;
                 if (moving.Y > 550- offset) moving.Y = 550- offset;
 
-                label1.Text=$"Cyan: {cyanCurve[0].X},{cyanCurve[0].Y} ;  {cyanCurve[1].X},{cyanCurve[1].Y};  {cyanCurve[2].X},{cyanCurve[2].Y};  {cyanCurve[3].X},{cyanCurve[3].Y} ";
-                label2.Text=$"Magenta: {magentaCurve[0].X},{magentaCurve[0].Y} ;  {magentaCurve[1].X},{magentaCurve[1].Y};  {magentaCurve[2].X},{magentaCurve[2].Y};  {magentaCurve[3].X},{magentaCurve[3].Y} ";
-                label3.Text=$"Yellow: {yellowCurve[0].X},{yellowCurve[0].Y} ;  {yellowCurve[1].X},{yellowCurve[1].Y};  {yellowCurve[2].X},{yellowCurve[2].Y};  {yellowCurve[3].X},{yellowCurve[3].Y} ";
-                label4.Text=$"Black: {blackCurve[0].X},{blackCurve[0].Y} ;  {blackCurve[1].X},{blackCurve[1].Y};  {blackCurve[2].X},{blackCurve[2].Y};  {blackCurve[3].X},{blackCurve[3].Y} ";
+                //label1.Text=$"Cyan: {cyanCurve[0].X},{cyanCurve[0].Y} ;  {cyanCurve[1].X},{cyanCurve[1].Y};  {cyanCurve[2].X},{cyanCurve[2].Y};  {cyanCurve[3].X},{cyanCurve[3].Y} ";
+                //label2.Text=$"Magenta: {magentaCurve[0].X},{magentaCurve[0].Y} ;  {magentaCurve[1].X},{magentaCurve[1].Y};  {magentaCurve[2].X},{magentaCurve[2].Y};  {magentaCurve[3].X},{magentaCurve[3].Y} ";
+                //label3.Text=$"Yellow: {yellowCurve[0].X},{yellowCurve[0].Y} ;  {yellowCurve[1].X},{yellowCurve[1].Y};  {yellowCurve[2].X},{yellowCurve[2].Y};  {yellowCurve[3].X},{yellowCurve[3].Y} ";
+                //label4.Text=$"Black: {blackCurve[0].X},{blackCurve[0].Y} ;  {blackCurve[1].X},{blackCurve[1].Y};  {blackCurve[2].X},{blackCurve[2].Y};  {blackCurve[3].X},{blackCurve[3].Y} ";
 
                 pictureBox3.Invalidate();
             }
@@ -291,7 +292,6 @@ namespace Grafika_projekt_3
 
         private void button5_Click(object sender, EventArgs e)
         {
-
             cyanCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(424, 115), new MyPoint(408,129), new MyPoint(525,126) };
             magentaCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(443,110), new MyPoint(363,169), new MyPoint(525,162) };
             yellowCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(383,175), new MyPoint(401,126), new MyPoint(525, 140) };
@@ -306,6 +306,53 @@ namespace Grafika_projekt_3
             yellowCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(293,262), new MyPoint(354,231), new MyPoint(525, 226) };
             blackCurve = new MyPoint[] { new MyPoint(275,525), new MyPoint(415,474), new MyPoint(470,380), new MyPoint(550 - offset, 0 + offset) };
             pictureBox3.Invalidate();
+        }
+
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var curve = cyanCurve;
+            string[] lines = { $"{curve[0].X};{curve[0].Y};{curve[1].X};{curve[1].Y};{curve[2].X};{curve[2].Y};{curve[3].X};{curve[3].Y};" };
+            curve = magentaCurve;
+            lines[0] += $"{curve[0].X};{curve[0].Y};{curve[1].X};{curve[1].Y};{curve[2].X};{curve[2].Y};{curve[3].X};{curve[3].Y};";
+            curve = yellowCurve;
+            lines[0] += $"{curve[0].X};{curve[0].Y};{curve[1].X};{curve[1].Y};{curve[2].X};{curve[2].Y};{curve[3].X};{curve[3].Y};";
+            curve = blackCurve;
+            lines[0] += $"{curve[0].X};{curve[0].Y};{curve[1].X};{curve[1].Y};{curve[2].X};{curve[2].Y};{curve[3].X};{curve[3].Y};";
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory+@"Curves";
+            dialog.AutoUpgradeEnabled = true;
+            dialog.Title = "Please select an image.";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.File.WriteAllLines(@dialog.FileName, lines);
+
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + @"Curves";
+            dialog.AutoUpgradeEnabled = true;
+            dialog.Title = "Load a curve.";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string text = File.ReadAllText(dialog.FileName, Encoding.UTF8);
+                string[] t = text.Split(';');
+                cyanCurve = new MyPoint[] { new MyPoint(Convert.ToInt32(t[0]), Convert.ToInt32(t[1])), new MyPoint(Convert.ToInt32(t[2]), Convert.ToInt32(t[3])), new MyPoint(Convert.ToInt32(t[4]), Convert.ToInt32(t[5])), new MyPoint(Convert.ToInt32(t[6]), Convert.ToInt32(t[7])) };
+                magentaCurve = new MyPoint[] { new MyPoint(Convert.ToInt32(t[8]), Convert.ToInt32(t[9])), new MyPoint(Convert.ToInt32(t[10]), Convert.ToInt32(t[11])), new MyPoint(Convert.ToInt32(t[12]), Convert.ToInt32(t[13])), new MyPoint(Convert.ToInt32(t[14]), Convert.ToInt32(t[15])) };
+                yellowCurve = new MyPoint[] { new MyPoint(Convert.ToInt32(t[16]), Convert.ToInt32(t[17])), new MyPoint(Convert.ToInt32(t[18]), Convert.ToInt32(t[19])), new MyPoint(Convert.ToInt32(t[20]), Convert.ToInt32(t[21])), new MyPoint(Convert.ToInt32(t[22]), Convert.ToInt32(t[23])) };
+                blackCurve = new MyPoint[] { new MyPoint(Convert.ToInt32(t[24]), Convert.ToInt32(t[25])), new MyPoint(Convert.ToInt32(t[26]), Convert.ToInt32(t[27])), new MyPoint(Convert.ToInt32(t[28]), Convert.ToInt32(t[29])), new MyPoint(Convert.ToInt32(t[30]), Convert.ToInt32(t[31])) };
+                pictureBox3.Invalidate();
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            childForm.saveFile();
         }
     }
 }

@@ -1,0 +1,11 @@
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\bin\Debug\Grafika projekt 3.exe.config
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\bin\Debug\Grafika projekt 3.exe
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\bin\Debug\Grafika projekt 3.pdb
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\obj\Debug\Grafika projekt 3.csprojAssemblyReference.cache
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\obj\Debug\Grafika_projekt_3.Form1.resources
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\obj\Debug\Grafika_projekt_3.Properties.Resources.resources
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\obj\Debug\Grafika projekt 3.csproj.GenerateResource.cache
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\obj\Debug\Grafika projekt 3.csproj.CoreCompileInputs.cache
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\obj\Debug\Grafika projekt 3.exe
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\obj\Debug\Grafika projekt 3.pdb
+C:\Users\Przem\source\repos\Grafika projekt 3\Grafika projekt 3\obj\Debug\Grafika_projekt_3.ChildForm.resources

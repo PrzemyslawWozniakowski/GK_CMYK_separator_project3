@@ -34,7 +34,7 @@ namespace Grafika_projekt_3
             Height = _height;
             bitmap = _bitmap;
             clampBitmap(800, 400);
-            InitializeComponent(_width , _height);
+            InitializeComponent(_width, _height);
 
 
 
@@ -76,10 +76,10 @@ namespace Grafika_projekt_3
             {
                 bitmap = new Bitmap(bitmap, new Size(w, h));
             }
-            if(bitmap.Width > w)
+            if (bitmap.Width > w)
                 bitmap = new Bitmap(bitmap, new Size(w, bitmap.Height));
             if (bitmap.Height > h)
-                bitmap = new Bitmap(bitmap, new Size(bitmap.Width,h));
+                bitmap = new Bitmap(bitmap, new Size(bitmap.Width, h));
         }
         public int minVal(int m1, int m2, int m3)
         {
@@ -243,18 +243,19 @@ namespace Grafika_projekt_3
             // 
             // ChildForm
             // 
-            this.ClientSize = new System.Drawing.Size(2*_width, 2*_height);
+            this.ClientSize = new System.Drawing.Size(2 * _width, 2 * _height);
             this.Controls.Add(this.canvasK);
             this.Controls.Add(this.canvasY);
             this.Controls.Add(this.canvasM);
             this.Controls.Add(this.canvasC);
             this.Name = "ChildForm";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             ((System.ComponentModel.ISupportInitialize)(this.canvasC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canvasM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canvasY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canvasK)).EndInit();
             this.ResumeLayout(false);
 
-}
+        }
     }
 }

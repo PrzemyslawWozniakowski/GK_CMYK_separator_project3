@@ -356,60 +356,55 @@ namespace Grafika_projekt_3
 
         private void SetUpTable()
         {
-            tableLayoutPanel1.Controls.Add(new Label() { Dock=DockStyle.Fill, Text = "Value" , TextAlign = ContentAlignment.MiddleCenter, Font= new Font("Arial", 11, FontStyle.Bold) }, 0, 0);
-            tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Cyan", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 1);
-            tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Magenta", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 2);
-            tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Yellow", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 3);
-            tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Black", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 4);
+            myLayoutPanel1.Controls.Add(new Label() { Dock=DockStyle.Fill, Text = "Value" , TextAlign = ContentAlignment.MiddleCenter, Font= new Font("Arial", 11, FontStyle.Bold) }, 0, 0);
+            myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Cyan", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 1);
+            myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Magenta", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 2);
+            myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Yellow", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 3);
+            myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Black", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 4);
             
             for(int i=1; i<12; i++)
             {
-                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{(i-1)*10}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 0);
+                myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{(i-1)*10}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 0);
             }
 
             for (int i = 1; i < 12; i++)
             {
-                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{cyanValues[(i-1)*10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 1);
+                myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{cyanValues[(i-1)*10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 10, FontStyle.Regular) }, i, 1);
             }
             for (int i = 1; i < 12; i++)
             {
-                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{magentaValues[(i - 1) * 10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 2);
+                myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{magentaValues[(i - 1) * 10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 10, FontStyle.Regular) }, i, 2);
             }
             for (int i = 1; i < 12; i++)
             {
-                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{yellowValues[(i - 1) * 10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 3);
+                myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{yellowValues[(i - 1) * 10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 10, FontStyle.Regular) }, i, 3);
             }
             for (int i = 1; i < 12; i++)
             {
-                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{blackValues[(i - 1) * 10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 4);
+                myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{blackValues[(i - 1) * 10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 10, FontStyle.Regular) }, i, 4);
             }
         }
         private void UpdateTable()
         {
-            tableLayoutPanel1.SuspendLayout();
+            myLayoutPanel1.SuspendLayout();
             for (int i = 1; i < 12; i++)
             {
-                tableLayoutPanel1.GetControlFromPosition(i, 1).Text = $"{cyanValues[(i - 1) * 10]}";
+                myLayoutPanel1.GetControlFromPosition(i, 1).Text = $"{cyanValues[(i - 1) * 10]}";
             }
             for (int i = 1; i < 12; i++)
             {
-                tableLayoutPanel1.GetControlFromPosition(i, 2).Text = $"{magentaValues[(i - 1) * 10]}";
+                myLayoutPanel1.GetControlFromPosition(i, 2).Text = $"{magentaValues[(i - 1) * 10]}";
             }
             for (int i = 1; i < 12; i++)
             {
-                tableLayoutPanel1.GetControlFromPosition(i, 3).Text = $"{yellowValues[(i - 1) * 10]}";
+                myLayoutPanel1.GetControlFromPosition(i, 3).Text = $"{yellowValues[(i - 1) * 10]}";
             }
             for (int i = 1; i < 12; i++)
             {
-                tableLayoutPanel1.GetControlFromPosition(i, 4).Text = $"{blackValues[(i - 1) * 10]}";
+                myLayoutPanel1.GetControlFromPosition(i, 4).Text = $"{blackValues[(i - 1) * 10]}";
             }
-            tableLayoutPanel1.ResumeLayout();
+            myLayoutPanel1.ResumeLayout();
             
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

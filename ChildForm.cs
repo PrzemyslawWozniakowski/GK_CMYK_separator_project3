@@ -28,15 +28,11 @@ namespace Grafika_projekt_3
         Color[,] blackMap;
         public ChildForm(int _width, int _height, Bitmap _bitmap, int[] cyanTable, int[] magentaTable, int[] yellowTable, int[] blackTable)
         {
-
-
             Width = _width;
             Height = _height;
             bitmap = _bitmap;
-            clampBitmap(800, 400);
+            clampBitmap(Width, Height);
             InitializeComponent(_width, _height);
-
-
 
             colorMap = new Color[bitmap.Width, bitmap.Height];
             blackMap = new Color[bitmap.Width, bitmap.Height];
@@ -58,7 +54,9 @@ namespace Grafika_projekt_3
                     int red = (100 - cyan) * 255 / 100;
                     int green = (100 - magenta) * 255 / 100;
                     int blue = (100 - yellow) * 255 / 100;
-
+                    red = clamp(0, 255, red);
+                    green = clamp(0, 255, green);
+                    blue = clamp(0, 255, blue);
                     colorMap[i, j] = Color.FromArgb(red, green, blue);
                     blackMap[i, j] = Color.FromArgb(black, black, black);
                 }
@@ -80,6 +78,13 @@ namespace Grafika_projekt_3
                 bitmap = new Bitmap(bitmap, new Size(w, bitmap.Height));
             if (bitmap.Height > h)
                 bitmap = new Bitmap(bitmap, new Size(bitmap.Width, h));
+        }
+
+        public int clamp(int from, int to, int val)
+        {
+            if (val < from) return from;
+            if (val > to) return to;
+            return val;
         }
         public int minVal(int m1, int m2, int m3)
         {
@@ -111,7 +116,9 @@ namespace Grafika_projekt_3
                     int red = (100 - cyan) * 255 / 100;
                     int green = (100 - magenta) * 255 / 100;
                     int blue = (100 - yellow) * 255 / 100;
-
+                    red = clamp(0, 255, red);
+                    green = clamp(0, 255, green);
+                    blue = clamp(0, 255, blue);
                     colorMap[i, j] = Color.FromArgb(red, green, blue);
                     blackMap[i, j] = Color.FromArgb(black, black, black);
                 }
@@ -210,7 +217,6 @@ namespace Grafika_projekt_3
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 bp.Save(dialog.FileName, ImageFormat.Jpeg);
-
             }
         }
 

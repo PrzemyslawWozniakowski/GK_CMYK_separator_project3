@@ -49,18 +49,19 @@ namespace Grafika_projekt_3
             calculateTables();
             childForm = new ChildForm(pictureBox1.Width, pictureBox1.Height, bitmap, cyanValues, magentaValues, yellowValues, blackValues);
             childForm.Show();
-            
+            SetUpTable();
             pictureBox3.Invalidate();
         }
 
-        private void calculateTable(MyPoint[] curve, int[] values, int[] count)
+        private void calculateTable(MyPoint[] curve, ref int[] values,ref int[] count)
         {
-
+            values = new int[101];
+            count = new int[101];
             for (int i = 0; i < 101; i++)
             {
                 values[i] = 0;
             }
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i <= 1000; i++)
             {
                 float u = (float)i / 1000;
 
@@ -83,14 +84,15 @@ namespace Grafika_projekt_3
 
         private void calculateTables()
         {
-            calculateTable(cyanCurve, cyanValues, cyanCount);
-            calculateTable(magentaCurve, magentaValues, magentaCount);
-            calculateTable(yellowCurve, yellowValues, yellowCount);
-            calculateTable(blackCurve, blackValues, blackCount);
+            calculateTable(cyanCurve,ref cyanValues,ref cyanCount);
+            calculateTable(magentaCurve,ref magentaValues,ref magentaCount);
+            calculateTable(yellowCurve,ref yellowValues,ref yellowCount);
+            calculateTable(blackCurve,ref blackValues,ref blackCount);
         }
 
         private void pictureBox3_Paint(object sender, PaintEventArgs e)
         {
+           
             //pictureBox3.Image = new Bitmap(pictureBox3.Width, pictureBox3.Height);
             Pen pen = new Pen(Color.Cyan, 1);
             Pen bpen = new Pen(Color.Black, 1);
@@ -101,15 +103,15 @@ namespace Grafika_projekt_3
                 e.Graphics.DrawRectangle(bpen, new Rectangle(i, pictureBox3.Width - offset, 1, 1));
                 e.Graphics.DrawRectangle(bpen, new Rectangle(offset, i, 1, 1));
             }
-            e.Graphics.DrawLine(bpen, offset, 125 + offset, offset+500, 125 + offset);
+            e.Graphics.DrawLine(bpen, offset, 125 + offset, offset + 500, 125 + offset);
             e.Graphics.DrawLine(bpen, offset, 250 + offset, offset + 500, 250 + offset);
             e.Graphics.DrawLine(bpen, offset, 375 + offset, offset + 500, 375 + offset);
-            e.Graphics.DrawLine(bpen, offset,  offset, offset + 500,  offset);
+            e.Graphics.DrawLine(bpen, offset, offset, offset + 500, offset);
 
-            e.Graphics.DrawLine(bpen, offset+125,  offset, offset+ 125, 500 + offset);
-            e.Graphics.DrawLine(bpen, offset+250,  offset, offset + 250, 500 + offset);
-            e.Graphics.DrawLine(bpen, offset+375,  offset, offset + 375, 500 + offset);
-            e.Graphics.DrawLine(bpen, offset+500,  offset, offset + 500, 500+offset);
+            e.Graphics.DrawLine(bpen, offset + 125, offset, offset + 125, 500 + offset);
+            e.Graphics.DrawLine(bpen, offset + 250, offset, offset + 250, 500 + offset);
+            e.Graphics.DrawLine(bpen, offset + 375, offset, offset + 375, 500 + offset);
+            e.Graphics.DrawLine(bpen, offset + 500, offset, offset + 500, 500 + offset);
 
             if (checkBox2.Checked)
             {
@@ -130,7 +132,7 @@ namespace Grafika_projekt_3
                     DrawBezier(e, blackCurve, Color.Black);
             }
 
-            
+
             if (checkBox1.Checked)
             {
                 if (radioButton1.Checked)
@@ -208,13 +210,9 @@ namespace Grafika_projekt_3
 
                 if (moving.X < offset) moving.X = offset;
                 if (moving.Y < offset) moving.Y = offset;
-                if (moving.X > 550- offset) moving.X = 550- offset;
-                if (moving.Y > 550- offset) moving.Y = 550- offset;
+                if (moving.X > 550 - offset) moving.X = 550 - offset;
+                if (moving.Y > 550 - offset) moving.Y = 550 - offset;
 
-                //label1.Text=$"Cyan: {cyanCurve[0].X},{cyanCurve[0].Y} ;  {cyanCurve[1].X},{cyanCurve[1].Y};  {cyanCurve[2].X},{cyanCurve[2].Y};  {cyanCurve[3].X},{cyanCurve[3].Y} ";
-                //label2.Text=$"Magenta: {magentaCurve[0].X},{magentaCurve[0].Y} ;  {magentaCurve[1].X},{magentaCurve[1].Y};  {magentaCurve[2].X},{magentaCurve[2].Y};  {magentaCurve[3].X},{magentaCurve[3].Y} ";
-                //label3.Text=$"Yellow: {yellowCurve[0].X},{yellowCurve[0].Y} ;  {yellowCurve[1].X},{yellowCurve[1].Y};  {yellowCurve[2].X},{yellowCurve[2].Y};  {yellowCurve[3].X},{yellowCurve[3].Y} ";
-                //label4.Text=$"Black: {blackCurve[0].X},{blackCurve[0].Y} ;  {blackCurve[1].X},{blackCurve[1].Y};  {blackCurve[2].X},{blackCurve[2].Y};  {blackCurve[3].X},{blackCurve[3].Y} ";
 
                 pictureBox3.Invalidate();
             }
@@ -257,6 +255,7 @@ namespace Grafika_projekt_3
         {
             calculateTables();
             childForm.RedrawPaintings(cyanValues, magentaValues, yellowValues, blackValues);
+            UpdateTable();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -268,12 +267,12 @@ namespace Grafika_projekt_3
             dialog.Title = "Please select an image.";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-               
+
                 bitmap = new Bitmap(@dialog.FileName);
                 clampBitmap(pictureBox1.Width, pictureBox1.Height);
                 pictureBox1.Image = bitmap;
                 childForm.Close();
-                childForm = new ChildForm(pictureBox1.Width,pictureBox1.Height, bitmap, cyanValues, magentaValues, yellowValues, blackValues);
+                childForm = new ChildForm(pictureBox1.Width, pictureBox1.Height, bitmap, cyanValues, magentaValues, yellowValues, blackValues);
                 childForm.Show();
             }
         }
@@ -292,19 +291,19 @@ namespace Grafika_projekt_3
 
         private void button5_Click(object sender, EventArgs e)
         {
-            cyanCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(424, 115), new MyPoint(408,129), new MyPoint(525,126) };
-            magentaCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(443,110), new MyPoint(363,169), new MyPoint(525,162) };
-            yellowCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(383,175), new MyPoint(401,126), new MyPoint(525, 140) };
-            blackCurve = new MyPoint[] { new MyPoint(375 + offset, 550 - offset), new MyPoint(475,525), new MyPoint(505,360), new MyPoint(550 - offset, 0 + offset) };
+            cyanCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(424, 115), new MyPoint(408, 129), new MyPoint(525, 126) };
+            magentaCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(443, 110), new MyPoint(363, 169), new MyPoint(525, 162) };
+            yellowCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(383, 175), new MyPoint(401, 126), new MyPoint(525, 140) };
+            blackCurve = new MyPoint[] { new MyPoint(375 + offset, 550 - offset), new MyPoint(475, 525), new MyPoint(505, 360), new MyPoint(550 - offset, 0 + offset) };
             pictureBox3.Invalidate();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            cyanCurve = new MyPoint[] { new MyPoint(0+offset,550-offset ), new MyPoint(248,299), new MyPoint(373,181), new MyPoint(525,174) };
-            magentaCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(225,323), new MyPoint(352,222), new MyPoint(525,210) };
-            yellowCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(293,262), new MyPoint(354,231), new MyPoint(525, 226) };
-            blackCurve = new MyPoint[] { new MyPoint(275,525), new MyPoint(415,474), new MyPoint(470,380), new MyPoint(550 - offset, 0 + offset) };
+            cyanCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(248, 299), new MyPoint(373, 181), new MyPoint(525, 174) };
+            magentaCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(225, 323), new MyPoint(352, 222), new MyPoint(525, 210) };
+            yellowCurve = new MyPoint[] { new MyPoint(0 + offset, 550 - offset), new MyPoint(293, 262), new MyPoint(354, 231), new MyPoint(525, 226) };
+            blackCurve = new MyPoint[] { new MyPoint(275, 525), new MyPoint(415, 474), new MyPoint(470, 380), new MyPoint(550 - offset, 0 + offset) };
             pictureBox3.Invalidate();
         }
 
@@ -321,7 +320,7 @@ namespace Grafika_projekt_3
             lines[0] += $"{curve[0].X};{curve[0].Y};{curve[1].X};{curve[1].Y};{curve[2].X};{curve[2].Y};{curve[3].X};{curve[3].Y};";
 
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory+@"Curves";
+            dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + @"Curves";
             dialog.AutoUpgradeEnabled = true;
             dialog.Title = "Please select an image.";
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -353,6 +352,64 @@ namespace Grafika_projekt_3
         private void button9_Click(object sender, EventArgs e)
         {
             childForm.saveFile();
+        }
+
+        private void SetUpTable()
+        {
+            tableLayoutPanel1.Controls.Add(new Label() { Dock=DockStyle.Fill, Text = "Value" , TextAlign = ContentAlignment.MiddleCenter, Font= new Font("Arial", 11, FontStyle.Bold) }, 0, 0);
+            tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Cyan", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 1);
+            tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Magenta", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 2);
+            tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Yellow", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 3);
+            tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Black", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 4);
+            
+            for(int i=1; i<12; i++)
+            {
+                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{(i-1)*10}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 0);
+            }
+
+            for (int i = 1; i < 12; i++)
+            {
+                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{cyanValues[(i-1)*10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 1);
+            }
+            for (int i = 1; i < 12; i++)
+            {
+                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{magentaValues[(i - 1) * 10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 2);
+            }
+            for (int i = 1; i < 12; i++)
+            {
+                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{yellowValues[(i - 1) * 10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 3);
+            }
+            for (int i = 1; i < 12; i++)
+            {
+                tableLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{blackValues[(i - 1) * 10]}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 4);
+            }
+        }
+        private void UpdateTable()
+        {
+            tableLayoutPanel1.SuspendLayout();
+            for (int i = 1; i < 12; i++)
+            {
+                tableLayoutPanel1.GetControlFromPosition(i, 1).Text = $"{cyanValues[(i - 1) * 10]}";
+            }
+            for (int i = 1; i < 12; i++)
+            {
+                tableLayoutPanel1.GetControlFromPosition(i, 2).Text = $"{magentaValues[(i - 1) * 10]}";
+            }
+            for (int i = 1; i < 12; i++)
+            {
+                tableLayoutPanel1.GetControlFromPosition(i, 3).Text = $"{yellowValues[(i - 1) * 10]}";
+            }
+            for (int i = 1; i < 12; i++)
+            {
+                tableLayoutPanel1.GetControlFromPosition(i, 4).Text = $"{blackValues[(i - 1) * 10]}";
+            }
+            tableLayoutPanel1.ResumeLayout();
+            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

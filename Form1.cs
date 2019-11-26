@@ -47,7 +47,7 @@ namespace Grafika_projekt_3
 
             bitmap = new Bitmap(@"D:\Desktop\kot2.jpg");
             calculateTables();
-            childForm = new ChildForm(pictureBox1.Width, pictureBox1.Height, bitmap, cyanValues, magentaValues, yellowValues, blackValues);
+            childForm = new ChildForm(bitmap.Width, bitmap.Height, bitmap, cyanValues, magentaValues, yellowValues, blackValues);
             childForm.Show();
             SetUpTable();
             pictureBox3.Invalidate();
@@ -272,7 +272,7 @@ namespace Grafika_projekt_3
                 clampBitmap(pictureBox1.Width, pictureBox1.Height);
                 pictureBox1.Image = bitmap;
                 childForm.Close();
-                childForm = new ChildForm(pictureBox1.Width, pictureBox1.Height, bitmap, cyanValues, magentaValues, yellowValues, blackValues);
+                childForm = new ChildForm(bitmap.Width, bitmap.Height, bitmap, cyanValues, magentaValues, yellowValues, blackValues);
                 childForm.Show();
             }
         }
@@ -356,7 +356,7 @@ namespace Grafika_projekt_3
 
         private void SetUpTable()
         {
-            myLayoutPanel1.Controls.Add(new Label() { Dock=DockStyle.Fill, Text = "Value" , TextAlign = ContentAlignment.MiddleCenter, Font= new Font("Arial", 11, FontStyle.Bold) }, 0, 0);
+            myLayoutPanel1.Controls.Add(new Label() { Dock=DockStyle.Fill, Text = "Gray scale (%)" , TextAlign = ContentAlignment.MiddleCenter, Font= new Font("Arial", 11, FontStyle.Bold) }, 0, 0);
             myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Cyan", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 1);
             myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Magenta", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 2);
             myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = "Yellow", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, 0, 3);
@@ -364,7 +364,7 @@ namespace Grafika_projekt_3
             
             for(int i=1; i<12; i++)
             {
-                myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{(i-1)*10}", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 0);
+                myLayoutPanel1.Controls.Add(new Label() { Dock = DockStyle.Fill, Text = $"{(i-1)*10}%", TextAlign = ContentAlignment.MiddleCenter, Font = new Font("Arial", 11, FontStyle.Bold) }, i, 0);
             }
 
             for (int i = 1; i < 12; i++)

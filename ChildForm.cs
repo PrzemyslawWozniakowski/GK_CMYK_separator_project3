@@ -216,7 +216,7 @@ namespace Grafika_projekt_3
             dialog.Title = "Save an image.";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                bp.Save(dialog.FileName, ImageFormat.Jpeg);
+                bp.Save(dialog.FileName+".jpg", ImageFormat.Jpeg);
             }
         }
 

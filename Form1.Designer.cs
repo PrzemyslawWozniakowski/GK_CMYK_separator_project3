@@ -31,6 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.myLayoutPanel1 = new Grafika_projekt_3.MyLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -83,7 +84,7 @@
             this.myLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.myLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.myLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.myLayoutPanel1.Location = new System.Drawing.Point(628, 562);
+            this.myLayoutPanel1.Location = new System.Drawing.Point(631, 603);
             this.myLayoutPanel1.Name = "myLayoutPanel1";
             this.myLayoutPanel1.RowCount = 5;
             this.myLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -91,13 +92,14 @@
             this.myLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.myLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.myLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.myLayoutPanel1.Size = new System.Drawing.Size(819, 255);
+            this.myLayoutPanel1.Size = new System.Drawing.Size(712, 234);
             this.myLayoutPanel1.TabIndex = 5;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.button10);
             this.panel2.Controls.Add(this.button9);
             this.panel2.Controls.Add(this.button8);
             this.panel2.Controls.Add(this.button7);
@@ -118,6 +120,16 @@
             this.panel2.Size = new System.Drawing.Size(550, 337);
             this.panel2.TabIndex = 3;
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(360, 163);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(140, 33);
+            this.button10.TabIndex = 15;
+            this.button10.Text = "Generate Image";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(363, 280);
@@ -130,7 +142,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(363, 220);
+            this.button8.Location = new System.Drawing.Point(155, 280);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(140, 34);
             this.button8.TabIndex = 13;
@@ -140,7 +152,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(360, 160);
+            this.button7.Location = new System.Drawing.Point(360, 226);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(140, 34);
             this.button7.TabIndex = 12;
@@ -343,6 +355,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private MyLayoutPanel myLayoutPanel1;
+        private System.Windows.Forms.Button button10;
     }
 }
 

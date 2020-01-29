@@ -220,7 +220,6 @@ namespace Grafika_projekt_3
             }
         }
 
-
         private void InitializeComponent(int _width, int _height)
         {
             this.canvasC = new System.Windows.Forms.PictureBox();
@@ -273,7 +272,7 @@ namespace Grafika_projekt_3
             this.Controls.Add(this.canvasM);
             this.Controls.Add(this.canvasC);
             this.Name = "ChildForm";
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             ((System.ComponentModel.ISupportInitialize)(this.canvasC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canvasM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.canvasY)).EndInit();

@@ -155,7 +155,7 @@ namespace Grafika_projekt_3
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + @"Curves";
             dialog.AutoUpgradeEnabled = true;
-            dialog.Title = "Please select an image.";
+            dialog.Title = "Save a curve to a file.";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 System.IO.File.WriteAllLines(@dialog.FileName, lines);
